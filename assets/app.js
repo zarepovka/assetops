@@ -13,8 +13,8 @@
     admin: {
       role: "admin",
       label: "Администратор",
-      name: "Алексей Ковалёв",
-      email: "admin@assetops.io",
+      name: "Демо-администратор",
+      email: "admin@example.com",
       avatar: "AK",
       defaultPage: "index.html",
       pages: ["dashboard", "equipment", "tickets", "ticket-detail", "analytics", "notifications", "settings"],
@@ -32,8 +32,8 @@
     dispatcher: {
       role: "dispatcher",
       label: "Диспетчер",
-      name: "Марина Белова",
-      email: "dispatcher@assetops.io",
+      name: "Демо-диспетчер",
+      email: "dispatcher@example.com",
       avatar: "MB",
       defaultPage: "tickets.html",
       pages: ["dashboard", "equipment", "tickets", "ticket-detail", "analytics", "notifications"],
@@ -42,8 +42,8 @@
     engineer: {
       role: "engineer",
       label: "Инженер",
-      name: "Илья Смирнов",
-      email: "engineer@assetops.io",
+      name: "Демо-инженер",
+      email: "engineer@example.com",
       avatar: "IS",
       defaultPage: "tickets.html",
       pages: ["dashboard", "equipment", "tickets", "ticket-detail", "analytics", "notifications"],
@@ -52,8 +52,8 @@
     observer: {
       role: "observer",
       label: "Наблюдатель",
-      name: "Анна Волкова",
-      email: "observer@assetops.io",
+      name: "Демо-наблюдатель",
+      email: "observer@example.com",
       avatar: "AV",
       defaultPage: "index.html",
       pages: ["dashboard", "equipment", "tickets", "ticket-detail", "analytics", "notifications"],
@@ -4247,7 +4247,7 @@
   function getDefaultAppSettings() {
     return {
       workspaceName: data.enterprise.name || "Primary Workspace",
-      workspaceOwner: "Алексей Ковалёв",
+      workspaceOwner: "Демо-администратор",
       environment: "production",
       digestHour: "09:00",
       autoPriority: {
@@ -4304,7 +4304,7 @@
 
     return {
       workspaceName: String(settings.workspaceName || data.enterprise.name || "Primary Workspace").trim(),
-      workspaceOwner: String(settings.workspaceOwner || "Алексей Ковалёв").trim(),
+      workspaceOwner: String(settings.workspaceOwner || "Демо-администратор").trim(),
       environment: ["production", "staging", "pilot"].includes(settings.environment)
         ? settings.environment
         : "production",
