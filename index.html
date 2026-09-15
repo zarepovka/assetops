@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssetOps • Главная панель</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="dashboard">
+    <div class="shell">
+      <div class="appbar">
+        <a class="brand" href="index.html" aria-label="AssetOps">
+          <span class="brand__mark">AO</span>
+          <span class="brand__text">
+            <strong>AssetOps</strong>
+            <small>Operations Platform</small>
+          </span>
+        </a>
+        <div class="appbar__search">
+          <label class="searchbox">
+            <input type="search" placeholder="Поиск по технике, заявкам и пользователям" />
+          </label>
+        </div>
+        <div class="appbar__meta">
+          <div class="app-pill">Primary Workspace</div>
+          <div class="app-pill app-pill--status"><span class="status-dot"></span>Система стабильна</div>
+          <a class="app-pill app-pill--link" href="notifications.html">4 сигнала</a>
+          <div class="app-user">
+            <div class="app-user__avatar">AK</div>
+            <div class="app-user__info">
+              <strong>Алексей Ковалёв</strong>
+              <small>Администратор</small>
+            </div>
+          </div>
+          <a class="appbar__link" href="login.html">Выйти</a>
+        </div>
+      </div>
+
+      <header class="masthead">
+        <div class="masthead__main">
+          <div class="eyebrow">AssetOps / Unified IT Operations</div>
+          <h1>Единая панель управления техникой и сервисными заявками</h1>
+          <p>
+            Платформа объединяет реестр оборудования, очередь инцидентов, контроль обслуживания
+            и сервисную аналитику в одном рабочем пространстве.
+          </p>
+        </div>
+        <div class="masthead__aside">
+          <div class="meta-block">
+            <span>Workspace</span>
+            <strong data-workspace-name>Primary Workspace</strong>
+          </div>
+          <div class="meta-block">
+            <span>Снимок данных</span>
+            <strong data-reference-date>08.04.2026</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav class="topnav">
+        <a class="topnav__link is-active" href="index.html">Главная панель</a>
+        <a class="topnav__link" href="equipment.html">Техника</a>
+        <a class="topnav__link" href="tickets.html">Заявки</a>
+        <a class="topnav__link" href="notifications.html">Сигналы</a>
+        <a class="topnav__link" href="analytics.html">Аналитика</a>
+        <a class="topnav__link" href="settings.html">Настройки</a>
+        <a class="topnav__link" href="ticket-detail.html">Карточка заявки</a>
+      </nav>
+
+      <main class="workspace">
+        <section class="hero-layout">
+          <article class="panel panel--hero">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Control Room</div>
+                <h2>Сводное состояние инфраструктуры и сервиса</h2>
+                <p>Ключевые показатели, текущая нагрузка и точки внимания для операционной команды.</p>
+              </div>
+            </div>
+            <div class="signal-ribbon" id="dashboardMetrics"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Фокус смены</h2>
+                <p>Система выделяет приоритетные направления обслуживания на текущий день.</p>
+              </div>
+            </div>
+            <div id="dashboardFocus" class="focus-stack"></div>
+          </article>
+        </section>
+
+        <section class="dashboard-overview">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Quick Flow</div>
+                <h2>Быстрые действия</h2>
+                <p>Частые сценарии операционной команды и быстрый переход к ключевым разделам.</p>
+              </div>
+            </div>
+            <div id="quickActionGrid" class="action-grid"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Live Signals</div>
+                <h2>Сигнал-центр</h2>
+                <p>Операционные уведомления, требующие реакции в текущем рабочем цикле.</p>
+              </div>
+            </div>
+            <div id="notificationFeed" class="activity-list"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <div class="eyebrow">Workspace Readiness</div>
+              <h2>Запуск и готовность Workspace</h2>
+              <p>Ключевые этапы настройки и текущая степень готовности сервисного пространства.</p>
+            </div>
+          </div>
+          <div id="onboardingGrid" class="onboarding-grid"></div>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Monthly Trend</div>
+                <h2>Динамика заявок</h2>
+                <p>Соотношение зарегистрированных и закрытых обращений за последние месяцы.</p>
+              </div>
+            </div>
+            <div id="ticketTrendChart"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Asset Mix</div>
+                <h2>Структура парка техники</h2>
+                <p>Распределение оборудования по текущим эксплуатационным статусам.</p>
+              </div>
+            </div>
+            <div id="equipmentStatusChart"></div>
+          </article>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">System Advice</div>
+                <h2>Рекомендации системы</h2>
+                <p>Автоматические выводы на основе истории инцидентов и состояния техники.</p>
+              </div>
+            </div>
+            <div id="recommendationList" class="note-stack"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Risk Watchlist</div>
+                <h2>Проблемные единицы</h2>
+                <p>Оборудование, требующее внеплановой диагностики, ремонта или замены.</p>
+              </div>
+            </div>
+            <div id="hotEquipmentList" class="asset-stack"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="appModal" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+        <div class="modal__content" id="appModalContent"></div>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

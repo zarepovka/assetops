@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssetOps • Аналитика</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="analytics">
+    <div class="shell">
+      <div class="appbar">
+        <a class="brand" href="index.html" aria-label="AssetOps">
+          <span class="brand__mark">AO</span>
+          <span class="brand__text">
+            <strong>AssetOps</strong>
+            <small>Operations Platform</small>
+          </span>
+        </a>
+        <div class="appbar__search">
+          <label class="searchbox">
+            <input type="search" placeholder="Поиск по технике, заявкам и пользователям" />
+          </label>
+        </div>
+        <div class="appbar__meta">
+          <div class="app-pill">Primary Workspace</div>
+          <div class="app-pill app-pill--status"><span class="status-dot"></span>Система стабильна</div>
+          <a class="app-pill app-pill--link" href="notifications.html">4 сигнала</a>
+          <div class="app-user">
+            <div class="app-user__avatar">AK</div>
+            <div class="app-user__info">
+              <strong>Алексей Ковалёв</strong>
+              <small>Администратор</small>
+            </div>
+          </div>
+          <a class="appbar__link" href="login.html">Выйти</a>
+        </div>
+      </div>
+
+      <header class="masthead">
+        <div class="masthead__main">
+          <div class="eyebrow">AssetOps / Analytics</div>
+          <h1>Аналитика заявок и техники</h1>
+          <p>
+            Сводная аналитика по обращениям, состоянию оборудования,
+            проблемным активам и загрузке исполнителей.
+          </p>
+        </div>
+        <div class="masthead__aside">
+          <div class="meta-block">
+            <span>Раздел</span>
+            <strong>Analytics</strong>
+          </div>
+          <div class="meta-block">
+            <span>Снимок данных</span>
+            <strong data-reference-date>08.04.2026</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav class="topnav">
+        <a class="topnav__link" href="index.html">Главная панель</a>
+        <a class="topnav__link" href="equipment.html">Техника</a>
+        <a class="topnav__link" href="tickets.html">Заявки</a>
+        <a class="topnav__link" href="notifications.html">Сигналы</a>
+        <a class="topnav__link is-active" href="analytics.html">Аналитика</a>
+        <a class="topnav__link" href="settings.html">Настройки</a>
+        <a class="topnav__link" href="ticket-detail.html">Карточка заявки</a>
+      </nav>
+
+      <main class="workspace">
+        <section id="analyticsMetrics" class="signal-ribbon signal-ribbon--dense"></section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Analytics</div>
+                <h2>Ключевые выводы</h2>
+                <p>Краткие наблюдения по очереди обращений, структуре проблем и загрузке команды.</p>
+              </div>
+            </div>
+            <div id="analyticsHighlights" class="activity-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Decision Support</div>
+                <h2>Опорные метрики</h2>
+                <p>Показатели, которые помогают быстро оценить стабильность сервиса и зрелость контура.</p>
+              </div>
+            </div>
+            <div id="analyticsDecisionCards" class="insight-grid"></div>
+          </article>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Category Mix</div>
+                <h2>Количество заявок по категориям</h2>
+                <p>Распределение обращений по типам проблем, встречающимся в инфраструктуре.</p>
+              </div>
+            </div>
+            <div id="categoryChart"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Fleet Status</div>
+                <h2>Состояние техники</h2>
+                <p>Актуальное распределение оборудования по статусам эксплуатации и обслуживания.</p>
+              </div>
+            </div>
+            <div id="analyticsEquipmentStatus"></div>
+          </article>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Risk Assets</div>
+                <h2>Наиболее проблемное оборудование</h2>
+                <p>Техника с повторяющимися инцидентами и рекомендациями по дальнейшим действиям.</p>
+              </div>
+            </div>
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Инв. номер</th>
+                    <th>Наименование</th>
+                    <th>Подразделение</th>
+                    <th>Инциденты</th>
+                    <th>Рекомендация</th>
+                  </tr>
+                </thead>
+                <tbody id="problemEquipmentBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Team Load</div>
+                <h2>Загруженность исполнителей</h2>
+                <p>Сравнение активной нагрузки, закрытых и просроченных обращений по сотрудникам.</p>
+              </div>
+            </div>
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Исполнитель</th>
+                    <th>Роль</th>
+                    <th>Активные</th>
+                    <th>Закрыто</th>
+                    <th>Просрочено</th>
+                    <th>Загрузка</th>
+                  </tr>
+                </thead>
+                <tbody id="workloadBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="appModal" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+        <div class="modal__content" id="appModalContent"></div>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

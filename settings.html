@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssetOps • Настройки</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="settings">
+    <div class="shell">
+      <div class="appbar">
+        <a class="brand" href="index.html" aria-label="AssetOps">
+          <span class="brand__mark">AO</span>
+          <span class="brand__text">
+            <strong>AssetOps</strong>
+            <small>Operations Platform</small>
+          </span>
+        </a>
+        <div class="appbar__search">
+          <label class="searchbox">
+            <input type="search" placeholder="Поиск по технике, заявкам и пользователям" />
+          </label>
+        </div>
+        <div class="appbar__meta">
+          <div class="app-pill">Primary Workspace</div>
+          <div class="app-pill app-pill--status"><span class="status-dot"></span>Система стабильна</div>
+          <a class="app-pill app-pill--link" href="notifications.html">4 сигнала</a>
+          <div class="app-user">
+            <div class="app-user__avatar">AK</div>
+            <div class="app-user__info">
+              <strong>Алексей Ковалёв</strong>
+              <small>Администратор</small>
+            </div>
+          </div>
+          <a class="appbar__link" href="login.html">Выйти</a>
+        </div>
+      </div>
+
+      <header class="masthead">
+        <div class="masthead__main">
+          <div class="eyebrow">AssetOps / Workspace Settings</div>
+          <h1>Настройки workspace, SLA и правил маршрутизации</h1>
+          <p>
+            Управление параметрами рабочего пространства, правилами автоматического приоритета,
+            порогами SLA и составом событий, которые участвуют в signal center.
+          </p>
+        </div>
+        <div class="masthead__aside">
+          <div class="meta-block">
+            <span>Workspace</span>
+            <strong data-workspace-name>Primary Workspace</strong>
+          </div>
+          <div class="meta-block">
+            <span>Окружение</span>
+            <strong data-workspace-environment>Production</strong>
+          </div>
+          <div class="meta-block">
+            <span>Снимок данных</span>
+            <strong data-reference-date>08.04.2026</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav class="topnav">
+        <a class="topnav__link" href="index.html">Главная панель</a>
+        <a class="topnav__link" href="equipment.html">Техника</a>
+        <a class="topnav__link" href="tickets.html">Заявки</a>
+        <a class="topnav__link" href="notifications.html">Сигналы</a>
+        <a class="topnav__link" href="analytics.html">Аналитика</a>
+        <a class="topnav__link is-active" href="settings.html">Настройки</a>
+        <a class="topnav__link" href="ticket-detail.html">Карточка заявки</a>
+      </nav>
+
+      <main class="workspace">
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <div class="eyebrow">Workspace Policies</div>
+              <h2>Управление политиками workspace</h2>
+              <p>Изменения сохраняются локально и сразу влияют на автоприоритет, SLA-предупреждения, signal center и global search.</p>
+            </div>
+            <div class="toolbar">
+              <button class="button button--primary" type="button" data-action="save-settings">Сохранить</button>
+              <button class="button" type="button" data-action="reset-settings">Сбросить</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="settingsMetrics" class="signal-ribbon signal-ribbon--dense"></section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Workspace Profile</div>
+                <h2>Профиль workspace</h2>
+                <p>Параметры рабочей среды, владельца и базового режима операционного дня.</p>
+              </div>
+            </div>
+            <div id="settingsWorkspacePanel"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Priority Engine</div>
+                <h2>Правила автоприоритета</h2>
+                <p>Условия, по которым платформа усиливает приоритет и выделяет рискованные кейсы.</p>
+              </div>
+            </div>
+            <div id="settingsRulesPanel"></div>
+          </article>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">SLA Controls</div>
+                <h2>SLA и ранние предупреждения</h2>
+                <p>Пороговые значения, влияющие на оценку близости кейсов к нарушению SLA.</p>
+              </div>
+            </div>
+            <div id="settingsSlaPanel"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Signal Coverage</div>
+                <h2>Сигналы и уведомления</h2>
+                <p>Определяют, какие семейства событий участвуют в signal center и верхнем счётчике приложения.</p>
+              </div>
+            </div>
+            <div id="settingsNotificationPanel"></div>
+          </article>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Impact Preview</div>
+                <h2>Preview влияния</h2>
+                <p>Показывает, как текущий профиль настроек отражается на очереди, активе и сигнальном слое.</p>
+              </div>
+            </div>
+            <div id="settingsImpactGrid" class="insight-grid"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Policy Context</div>
+                <h2>Контекст политики</h2>
+                <p>Краткие выводы по выбранным правилам и их операционному эффекту в текущем workspace.</p>
+              </div>
+            </div>
+            <div id="settingsPolicyFeed" class="activity-list"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="appModal" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+        <div class="modal__content" id="appModalContent"></div>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

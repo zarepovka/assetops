@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssetOps • Карточка заявки</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="ticket-detail">
+    <div class="shell">
+      <div class="appbar">
+        <a class="brand" href="index.html" aria-label="AssetOps">
+          <span class="brand__mark">AO</span>
+          <span class="brand__text">
+            <strong>AssetOps</strong>
+            <small>Operations Platform</small>
+          </span>
+        </a>
+        <div class="appbar__search">
+          <label class="searchbox">
+            <input type="search" placeholder="Поиск по технике, заявкам и пользователям" />
+          </label>
+        </div>
+        <div class="appbar__meta">
+          <div class="app-pill">Primary Workspace</div>
+          <div class="app-pill app-pill--status"><span class="status-dot"></span>Система стабильна</div>
+          <a class="app-pill app-pill--link" href="notifications.html">4 сигнала</a>
+          <div class="app-user">
+            <div class="app-user__avatar">AK</div>
+            <div class="app-user__info">
+              <strong>Алексей Ковалёв</strong>
+              <small>Администратор</small>
+            </div>
+          </div>
+          <a class="appbar__link" href="login.html">Выйти</a>
+        </div>
+      </div>
+
+      <header class="masthead">
+        <div class="masthead__main">
+          <div class="eyebrow">AssetOps / Incident View</div>
+          <h1>Карточка заявки</h1>
+          <p>
+            Полная история обращения: описание проблемы, связанная техника,
+            текущий статус, исполнитель и результат обработки.
+          </p>
+        </div>
+        <div class="masthead__aside">
+          <div class="meta-block">
+            <span>Навигация</span>
+            <strong><a class="meta-link" href="tickets.html">Вернуться к журналу заявок</a></strong>
+          </div>
+          <div class="meta-block">
+            <span>Снимок данных</span>
+            <strong data-reference-date>08.04.2026</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav class="topnav">
+        <a class="topnav__link" href="index.html">Главная панель</a>
+        <a class="topnav__link" href="equipment.html">Техника</a>
+        <a class="topnav__link" href="tickets.html">Заявки</a>
+        <a class="topnav__link" href="notifications.html">Сигналы</a>
+        <a class="topnav__link" href="analytics.html">Аналитика</a>
+        <a class="topnav__link" href="settings.html">Настройки</a>
+        <a class="topnav__link is-active" href="ticket-detail.html">Карточка заявки</a>
+      </nav>
+
+      <main class="workspace">
+        <section class="ticket-layout">
+          <article class="panel">
+            <div class="ticket-head">
+              <div>
+                <div class="eyebrow">Инцидент</div>
+                <h2 id="detailTicketId">INC-2026-012</h2>
+              </div>
+              <div id="detailBadges" class="badge-row"></div>
+            </div>
+
+            <div id="detailFacts" class="fact-grid"></div>
+
+            <div class="content-box">
+              <div class="eyebrow">Problem Statement</div>
+              <h3>Описание проблемы</h3>
+              <p id="detailDescription"></p>
+            </div>
+
+            <div class="content-box">
+              <div class="eyebrow">Resolution</div>
+              <h3>Результат выполнения</h3>
+              <p id="detailResult"></p>
+            </div>
+
+            <div class="content-box content-box--decision">
+              <div class="eyebrow">Decision Logic</div>
+              <h3>Логика системы и AI-анализ</h3>
+              <p>Причины текущего приоритета, сервисные рекомендации и вывод локального AI-модуля.</p>
+              <div id="detailLogic" class="stack stack--decision"></div>
+              <div class="stack-actions">
+                <button
+                  class="button"
+                  id="analyzeTicketAiButton"
+                  type="button"
+                  data-action="analyze-ticket-ai"
+                >
+                  AI-анализ
+                </button>
+                <button class="button" id="editTicketButton" type="button">Редактировать</button>
+                <button
+                  class="button button--primary button--block"
+                  id="closeTicketButton"
+                  type="button"
+                  data-action="close-ticket"
+                >
+                  Закрыть заявку
+                </button>
+              </div>
+            </div>
+
+            <div class="content-box">
+              <div class="eyebrow">Timeline</div>
+              <h3>История изменения статусов</h3>
+              <div id="detailTimeline" class="timeline"></div>
+            </div>
+          </article>
+
+          <aside class="stack">
+            <article class="panel">
+              <div class="panel__header">
+                <div>
+                  <div class="eyebrow">Asset Context</div>
+                  <h2>Связанная техника</h2>
+                  <p>Информация об оборудовании и его истории в рамках сопровождения.</p>
+                </div>
+              </div>
+              <div id="detailEquipment"></div>
+            </article>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="appModal" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+        <div class="modal__content" id="appModalContent"></div>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

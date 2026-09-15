@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssetOps • Центр сигналов</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="notifications">
+    <div class="shell">
+      <div class="appbar">
+        <a class="brand" href="index.html" aria-label="AssetOps">
+          <span class="brand__mark">AO</span>
+          <span class="brand__text">
+            <strong>AssetOps</strong>
+            <small>Operations Platform</small>
+          </span>
+        </a>
+        <div class="appbar__search">
+          <label class="searchbox">
+            <input type="search" placeholder="Поиск по технике, заявкам и пользователям" />
+          </label>
+        </div>
+        <div class="appbar__meta">
+          <div class="app-pill">Primary Workspace</div>
+          <div class="app-pill app-pill--status"><span class="status-dot"></span>Система стабильна</div>
+          <a class="app-pill app-pill--link" href="notifications.html">4 сигнала</a>
+          <div class="app-user">
+            <div class="app-user__avatar">AK</div>
+            <div class="app-user__info">
+              <strong>Алексей Ковалёв</strong>
+              <small>Администратор</small>
+            </div>
+          </div>
+          <a class="appbar__link" href="login.html">Выйти</a>
+        </div>
+      </div>
+
+      <header class="masthead">
+        <div class="masthead__main">
+          <div class="eyebrow">AssetOps / Signal Center</div>
+          <h1>Центр сигналов и операционных событий</h1>
+          <p>
+            Единый поток уведомлений по заявкам, активам и аналитическим правилам.
+            Помогает быстро увидеть критичные ситуации, распределить фокус команды и перейти к нужному модулю.
+          </p>
+        </div>
+        <div class="masthead__aside">
+          <div class="meta-block">
+            <span>Модуль</span>
+            <strong>Signal Center</strong>
+          </div>
+          <div class="meta-block">
+            <span>Снимок данных</span>
+            <strong data-reference-date>08.04.2026</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav class="topnav">
+        <a class="topnav__link" href="index.html">Главная панель</a>
+        <a class="topnav__link" href="equipment.html">Техника</a>
+        <a class="topnav__link" href="tickets.html">Заявки</a>
+        <a class="topnav__link is-active" href="notifications.html">Сигналы</a>
+        <a class="topnav__link" href="analytics.html">Аналитика</a>
+        <a class="topnav__link" href="settings.html">Настройки</a>
+        <a class="topnav__link" href="ticket-detail.html">Карточка заявки</a>
+      </nav>
+
+      <main class="workspace">
+        <section class="panel panel--hero">
+          <div class="panel__header">
+            <div>
+              <div class="eyebrow">Unified Event Flow</div>
+              <h2>Приоритетные события сервисного контура</h2>
+              <p>Сводка по срочным обращениям, watchlist активов и аналитическим сигналам за текущий рабочий цикл.</p>
+            </div>
+          </div>
+          <div id="signalCenterMetrics" class="signal-ribbon"></div>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Единая очередь сигналов</h2>
+                <p>События ранжированы по критичности и уже содержат переход в нужный модуль для дальнейшего действия.</p>
+              </div>
+            </div>
+            <div id="signalCenterFeed" class="activity-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Следующие действия</h2>
+                <p>Короткий маршрут для диспетчера, инженера и администратора без переключения между несколькими экранами.</p>
+              </div>
+            </div>
+            <div id="signalCenterActions" class="action-grid"></div>
+          </article>
+        </section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Покрытие сигнального слоя</h2>
+                <p>Из каких модулей приходят события и какие зоны сейчас формируют основную нагрузку на команду.</p>
+              </div>
+            </div>
+            <div id="signalCoverageCards" class="insight-grid"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Watchlist активов</h2>
+                <p>Техника с повторяемыми инцидентами, ремонтом или выраженным риском замены.</p>
+              </div>
+            </div>
+            <div id="signalWatchlist" class="asset-stack"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <h2>Операционный журнал</h2>
+              <p>Последовательность ключевых изменений по обращениям и активам, влияющих на рабочий контур поддержки.</p>
+            </div>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>Время</th>
+                  <th>Источник</th>
+                  <th>Объект</th>
+                  <th>Событие</th>
+                  <th>Ответственный</th>
+                  <th>Действие</th>
+                </tr>
+              </thead>
+              <tbody id="signalJournalBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="appModal" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+        <div class="modal__content" id="appModalContent"></div>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

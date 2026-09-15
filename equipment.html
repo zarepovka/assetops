@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssetOps • Реестр техники</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="equipment">
+    <div class="shell">
+      <div class="appbar">
+        <a class="brand" href="index.html" aria-label="AssetOps">
+          <span class="brand__mark">AO</span>
+          <span class="brand__text">
+            <strong>AssetOps</strong>
+            <small>Operations Platform</small>
+          </span>
+        </a>
+        <div class="appbar__search">
+          <label class="searchbox">
+            <input type="search" placeholder="Поиск по технике, заявкам и пользователям" />
+          </label>
+        </div>
+        <div class="appbar__meta">
+          <div class="app-pill">Primary Workspace</div>
+          <div class="app-pill app-pill--status"><span class="status-dot"></span>Система стабильна</div>
+          <a class="app-pill app-pill--link" href="notifications.html">4 сигнала</a>
+          <div class="app-user">
+            <div class="app-user__avatar">AK</div>
+            <div class="app-user__info">
+              <strong>Алексей Ковалёв</strong>
+              <small>Администратор</small>
+            </div>
+          </div>
+          <a class="appbar__link" href="login.html">Выйти</a>
+        </div>
+      </div>
+
+      <header class="masthead">
+        <div class="masthead__main">
+          <div class="eyebrow">AssetOps / Asset Registry</div>
+          <h1>Единый каталог техники и устройств</h1>
+          <p>
+            Каталог оборудования с фильтрацией по типу, подразделению и состоянию
+            для учёта, инвентаризации и сервисного сопровождения.
+          </p>
+        </div>
+        <div class="masthead__aside">
+          <div class="meta-block">
+            <span>Модуль</span>
+            <strong>Asset Registry</strong>
+          </div>
+          <div class="meta-block">
+            <span>Снимок данных</span>
+            <strong data-reference-date>08.04.2026</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav class="topnav">
+        <a class="topnav__link" href="index.html">Главная панель</a>
+        <a class="topnav__link is-active" href="equipment.html">Техника</a>
+        <a class="topnav__link" href="tickets.html">Заявки</a>
+        <a class="topnav__link" href="notifications.html">Сигналы</a>
+        <a class="topnav__link" href="analytics.html">Аналитика</a>
+        <a class="topnav__link" href="settings.html">Настройки</a>
+        <a class="topnav__link" href="ticket-detail.html">Карточка заявки</a>
+      </nav>
+
+      <main class="workspace">
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <div class="eyebrow">Asset Registry</div>
+              <h2>Фильтры и действия</h2>
+              <p>Фильтрация списка оборудования для инвентарного учёта и анализа состояния.</p>
+            </div>
+            <div class="toolbar">
+              <button class="button button--primary" type="button" data-action="add-equipment">Добавить</button>
+              <button class="button" type="button" data-action="save-equipment-view">Сохранить вид</button>
+              <button class="button" type="button" id="resetEquipmentFilters">Сбросить</button>
+            </div>
+          </div>
+          <div class="toolbar toolbar--filters">
+            <select id="equipmentTypeFilter"></select>
+            <select id="equipmentDepartmentFilter"></select>
+            <select id="equipmentStatusFilter"></select>
+          </div>
+          <div id="equipmentToolbarSummary" class="toolbar-summary"></div>
+          <div class="module-tools">
+            <div class="saved-strip">
+              <div class="saved-strip__head">
+                <span>Сохранённые виды</span>
+                <small>быстрое переключение между частыми срезами</small>
+              </div>
+              <div id="equipmentSavedViews" class="saved-views"></div>
+            </div>
+            <div id="equipmentBulkBar"></div>
+          </div>
+        </section>
+
+        <section id="equipmentMetrics" class="signal-ribbon signal-ribbon--dense"></section>
+
+        <section class="grid grid--2">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Risk Queue</div>
+                <h2>Watchlist активов</h2>
+                <p>Устройства с повторными инцидентами, повышенным износом и риском внепланового ремонта.</p>
+              </div>
+            </div>
+            <div id="equipmentWatchlist" class="asset-stack"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <div class="eyebrow">Registry Signals</div>
+                <h2>Контекст модуля</h2>
+                <p>Сводка по охвату каталога, жизненному циклу активов и состоянию эксплуатационного парка.</p>
+              </div>
+            </div>
+            <div id="equipmentModuleInsights" class="insight-grid"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <div class="eyebrow">Catalog View</div>
+              <h2>Таблица оборудования</h2>
+              <p>Проблемная техника выделяется на основе частоты инцидентов и срока эксплуатации.</p>
+            </div>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th class="table-check-head">
+                    <input
+                      id="selectAllEquipmentRows"
+                      class="table-check"
+                      type="checkbox"
+                      data-select-all-equipment
+                      aria-label="Выбрать все устройства"
+                    />
+                  </th>
+                  <th>Инв. номер</th>
+                  <th>Наименование</th>
+                  <th>Тип</th>
+                  <th>Подразделение</th>
+                  <th>Пользователь</th>
+                  <th>Состояние</th>
+                  <th>Дата ввода</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody id="equipmentTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="appModal" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+        <div class="modal__content" id="appModalContent"></div>
+      </div>
+    </div>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

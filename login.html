@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssetOps • Вход</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="login">
+    <main class="auth-shell">
+      <section class="auth-hero">
+        <a class="brand brand--light" href="login.html" aria-label="AssetOps">
+          <span class="brand__mark">AO</span>
+          <span class="brand__text">
+            <strong>AssetOps</strong>
+            <small>Operations Platform</small>
+          </span>
+        </a>
+
+        <div class="auth-copy">
+          <div class="eyebrow">Unified IT Operations</div>
+          <h1>Управление техникой, инцидентами и сервисной аналитикой в одном интерфейсе</h1>
+          <p>
+            AssetOps объединяет реестр оборудования, очередь заявок, контроль обслуживания
+            и операционную аналитику для сервисных команд.
+          </p>
+        </div>
+
+        <div class="auth-preview">
+          <div class="auth-preview__card">
+            <span>Активные обращения</span>
+            <strong>6</strong>
+            <small>Service Desk / live queue</small>
+          </div>
+          <div class="auth-preview__card">
+            <span>Проблемные активы</span>
+            <strong>5</strong>
+            <small>Asset Registry / watchlist</small>
+          </div>
+          <div class="auth-preview__card">
+            <span>Среднее закрытие</span>
+            <strong>5 ч</strong>
+            <small>Analytics / SLA pulse</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="auth-panel">
+        <div class="auth-panel__header">
+          <div class="eyebrow">Вход в рабочее пространство</div>
+          <h2>Добро пожаловать в AssetOps</h2>
+          <p>Используйте рабочую учётную запись для доступа к платформе.</p>
+        </div>
+
+        <form class="auth-form" id="loginForm" novalidate>
+          <div class="field">
+            <label for="loginRole">Роль</label>
+            <select id="loginRole" name="loginRole">
+              <option value="admin">Администратор</option>
+              <option value="dispatcher">Диспетчер</option>
+              <option value="engineer">Инженер</option>
+              <option value="observer">Наблюдатель</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" value="admin@assetops.io" />
+          </div>
+          <div class="field">
+            <label for="loginPassword">Пароль</label>
+            <input id="loginPassword" type="password" value="password" />
+          </div>
+          <div class="auth-form__row">
+            <label class="checkline">
+              <input type="checkbox" checked />
+              <span>Оставаться в системе</span>
+            </label>
+            <a class="auth-link" href="index.html">Нужна помощь?</a>
+          </div>
+          <button class="button button--primary button--block" type="submit">Войти в Workspace</button>
+        </form>
+
+        <div class="auth-note">
+          <strong data-login-role-title>Администратор</strong>
+          <p data-login-role-text>
+            Полный доступ к каталогу техники, сервисной очереди, аналитике, сигналам и настройкам рабочего пространства.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
